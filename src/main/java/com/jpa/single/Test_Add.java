@@ -3,7 +3,7 @@ package com.jpa.single;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-public class Test {
+public class Test_Add {
     public static void main(String[] args) {
         Person person = new Person();
         person.setName("Haruka");

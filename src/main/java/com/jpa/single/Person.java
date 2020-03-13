@@ -5,10 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Person")
+@NamedQueries({
+    @NamedQuery(
+        name = "Person.findAll",
+        query = "SELECT p FROM Person p"
+    ),
+    @NamedQuery(
+        name = "Person.findByName",
+        query = "SELECT p FROM Person p Where p.name = :name"
+    )
+})
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
