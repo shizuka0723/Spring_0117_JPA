@@ -1,5 +1,6 @@
 package com.jpa.one2one;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +23,7 @@ public class Husband {
     
     @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinColumn(name = "wife_id")
+    @JsonIgnoreProperties(value = "husband")
     private Wife wife;
 
     public Long getId() {
@@ -47,6 +49,12 @@ public class Husband {
     public void setWife(Wife wife) {
         this.wife = wife;
     }
+
+    @Override
+    public String toString() {
+        return "Husband{" + "id=" + id + ", name=" + name + ", wife=" + wife + '}';
+    }
+    
     
     
 }

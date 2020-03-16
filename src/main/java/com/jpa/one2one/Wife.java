@@ -1,10 +1,13 @@
 package com.jpa.one2one;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,10 @@ public class Wife {
     @Column(name = "name",nullable = false,length = 50)
     private String name;
 
+    @OneToOne(mappedBy = "wife",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @JsonIgnoreProperties(value = "wife")
+    private Husband husband;
+    
     public Long getId() {
         return id;
     }
@@ -32,4 +39,21 @@ public class Wife {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Husband getHusband() {
+        return husband;
+    }
+
+    public void setHusband(Husband husband) {
+        this.husband = husband;
+    }
+
+    
+    
+    @Override
+    public String toString() {
+        return "Wife{" + "id=" + id + ", name=" + name + '}';
+    }
+    
+    
 }
