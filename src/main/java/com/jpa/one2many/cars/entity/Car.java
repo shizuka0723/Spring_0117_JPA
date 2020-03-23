@@ -27,15 +27,19 @@ public class Car {
     @JoinColumn(name = "price_id")
     private Price price;
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "driver_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
+    @JoinColumn(name = "driver_id",nullable = false)
     private Driver driver;
     
     public Car(){};
 
-    public Car(String name) {
+    public Car(String name, Price price, Driver driver) {
         this.name = name;
+        this.price = price;
+        this.driver = driver;
     }
+
+  
     
     public Long getId() {
         return id;
