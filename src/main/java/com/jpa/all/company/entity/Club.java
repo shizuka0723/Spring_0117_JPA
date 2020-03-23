@@ -21,9 +21,6 @@ public class Club {
     
     @Column
     private String name;
-    
-    @ManyToMany(mappedBy = "clubs")
-    private Set<Employee> employee = new LinkedHashSet<>();
 
     public Club() {
     }
